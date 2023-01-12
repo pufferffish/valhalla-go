@@ -1,0 +1,1 @@
+c++ -I/home/octeep/valhalla/third_party/date/include -I/home/octeep/valhalla/third_party/rapidjson/include/  valhalla_go.cpp -lvalhalla -lprotobuf -lcurl -lz -lpthread -shared -fPIC -o libvalhalla_go.so
