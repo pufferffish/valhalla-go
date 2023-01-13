@@ -3,7 +3,7 @@ extern "C" {
 #endif
 
 typedef void* Actor;
-Actor actor_init(const char*);
+Actor actor_init(const char*, char *);
 
 const char * actor_route(Actor, const char *, char *);
 

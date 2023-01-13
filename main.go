@@ -14,11 +14,21 @@ type ValhallaActor struct {
 	ptr unsafe.Pointer
 }
 
-func NewValhallaActor(configPath string) *ValhallaActor {
+func NewValhallaActor(configPath string) (*ValhallaActor, error) {
+	var isError uint8 = 0
 	cs := C.CString(configPath)
-	actor := unsafe.Pointer(C.actor_init(cs))
+	resp := C.actor_init(cs, (*C.char)(unsafe.Pointer(&isError)))
 	C.free(unsafe.Pointer(cs))
-	return &ValhallaActor{ptr: actor}
+	switch isError {
+	case 0:
+		return &ValhallaActor{ptr: unsafe.Pointer(resp)}, nil
+	case 1:
+		err := C.GoString((*C.char)(resp))
+		C.free(unsafe.Pointer(resp))
+		return nil, errors.New(err)
+	default:
+		panic("Invalid error code from valhalla C binding")
+	}
 }
 
 func (actor *ValhallaActor) Isochrone(request string) (string, error) {
@@ -41,7 +51,11 @@ func main() {
 	request := `
 		{"locations":[{"lat":40.744014,"lon":-73.990508}],"costing":"pedestrian","contours":[{"time":15.0,"color":"ff0000"}]}
 	`
-	actor := NewValhallaActor("test_config/config.json")
+	actor, err := NewValhallaActor("test_config/config.json")
+	if err != nil {
+		panic(err.Error())
+	}
+
 	resp, err := actor.Isochrone(request)
 	if err != nil {
 		println(err.Error())
@@ -54,5 +68,10 @@ func main() {
 		println(err.Error())
 	} else {
 		println(resp)
+	}
+
+	_, err = NewValhallaActor("waewaewe")
+	if err != nil {
+		panic(err.Error())
 	}
 }

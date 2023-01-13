@@ -29,24 +29,32 @@ const boost::property_tree::ptree configure(const std::string& config) {
   return pt;
 }
 
-Actor actor_init(const char* config) {
-  auto actor = new valhalla::tyr::actor_t(configure(config), true);
-  return (Actor) actor;
+char* copy_str(const char * string) {
+  char *cstr = (char *) malloc(strlen(string) + 1);
+  strcpy(cstr, string);
+  return cstr;
+}
+
+void* actor_init(const char* config, char * is_error) {
+  try {
+    auto actor = new valhalla::tyr::actor_t(configure(config), true);
+    *is_error = 0;
+    return (void*) actor;
+  } catch (std::exception& ex) {
+    *is_error = 1;
+    return (void*) copy_str(ex.what());
+  }
 }
 
 {{ range .Functions }}
 const char * actor_{{.}}(Actor actor, const char * req, char * is_error) {
   try {
     std::string resp = ((valhalla::tyr::actor_t*) actor)->{{.}}(req);
-    char *cstr = (char *) malloc(resp.length() + 1);
-    strcpy(cstr, resp.c_str());
     *is_error = 0;
-    return cstr;
+    return copy_str(resp.c_str());
   } catch (std::exception& ex) {
-    char *cstr = (char *) malloc(strlen(ex.what()) + 1);
-    strcpy(cstr, ex.what());
     *is_error = 1;
-    return cstr;
+    return copy_str(ex.what());
   }
 }
 {{ end }}

@@ -18,7 +18,7 @@ func writeTemplate(instance *Instance, templatePath, outputPath string) {
 		panic(err)
 	}
 
-	out, err := os.OpenFile(outputPath, os.O_WRONLY, 0755)
+	out, err := os.OpenFile(outputPath, os.O_WRONLY|os.O_CREATE, 0755)
 	if err != nil {
 		panic(err)
 	}
