@@ -46,10 +46,10 @@ void* actor_init(const char* config, char * is_error) {
   }
 }
 
-{{ range .Functions }}
-const char * actor_{{.}}(Actor actor, const char * req, char * is_error) {
+{{ range $k, $v := .Functions }}
+const char * actor_{{$k}}(Actor actor, const char * req, char * is_error) {
   try {
-    std::string resp = ((valhalla::tyr::actor_t*) actor)->{{.}}(req);
+    std::string resp = ((valhalla::tyr::actor_t*) actor)->{{$k}}(req);
     *is_error = 0;
     return copy_str(resp.c_str());
   } catch (std::exception& ex) {

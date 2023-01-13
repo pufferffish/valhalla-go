@@ -4,8 +4,8 @@ extern "C" {
 
 typedef void* Actor;
 Actor actor_init(const char*, char *);
-{{ range .Functions }}
-const char * actor_{{.}}(Actor, const char *, char *);
+{{ range $k, $v := .Functions }}
+const char * actor_{{$k}}(Actor, const char *, char *);
 {{ end }}
 
 #ifdef __cplusplus
