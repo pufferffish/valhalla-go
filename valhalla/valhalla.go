@@ -1,6 +1,6 @@
 package valhalla
 
-// #cgo LDFLAGS: -L../bindings/result/lib -lvalhalla_go
+// #cgo LDFLAGS: -L../bindings/result/lib/ -lvalhalla_go
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../bindings/valhalla_go.h"
