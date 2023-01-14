@@ -1,6 +1,9 @@
 package main
 
-import "valhalla-go/valhalla"
+import (
+	"fmt"
+	"valhalla-go/valhalla"
+)
 
 func main() {
 	request := `
@@ -32,8 +35,12 @@ func main() {
 		panic("expected error")
 	}
 
-	_, err = valhalla.NewActorFromConfig(valhalla.DefaultConfig)
+	conf := valhalla.DefaultConfig()
+	conf.SetTileExtractPath("/goofy/ahh")
+	_, err = valhalla.NewActorFromConfig(conf)
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println(valhalla.DefaultConfig())
 }

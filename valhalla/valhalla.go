@@ -31,9 +31,9 @@ func NewActorFromFile(configPath string) (*Actor, error) {
 	}
 }
 
-func NewActorFromConfig(config string) (*Actor, error) {
+func NewActorFromConfig(config *Config) (*Actor, error) {
 	var isError uint8 = 0
-	cs := C.CString(config)
+	cs := C.CString(config.String())
 	resp := C.actor_init_from_config(cs, (*C.char)(unsafe.Pointer(&isError)))
 	C.free(unsafe.Pointer(cs))
 	switch isError {
