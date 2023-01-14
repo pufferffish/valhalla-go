@@ -3,7 +3,8 @@ extern "C" {
 #endif
 
 typedef void* Actor;
-Actor actor_init(const char*, char *);
+Actor actor_init_from_file(const char*, char *);
+Actor actor_init_from_config(const char*, char *);
 
 const char * actor_centroid(Actor, const char *, char *);
 

@@ -6,7 +6,7 @@ func main() {
 	request := `
 		{"locations":[{"lat":40.744014,"lon":-73.990508}],"costing":"pedestrian","contours":[{"time":15.0,"color":"ff0000"}]}
 	`
-	actor, err := valhalla.NewActor("test_config/config.json")
+	actor, err := valhalla.NewActorFromFile("test_config/config.json")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -25,8 +25,15 @@ func main() {
 		println(resp)
 	}
 
-	_, err = valhalla.NewActor("waewaewe")
+	_, err = valhalla.NewActorFromFile("waewaewe")
 	if err != nil {
-		panic(err.Error())
+		println(err.Error())
+	} else {
+		panic("expected error")
+	}
+
+	_, err = valhalla.NewActorFromConfig(valhalla.DefaultConfig)
+	if err != nil {
+		panic(err)
 	}
 }

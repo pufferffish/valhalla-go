@@ -1,6 +1,6 @@
 package valhalla
 
-// #cgo LDFLAGS: -L../bindings/result/lib -lvalhalla_go
+// #cgo LDFLAGS: -L../result/lib -lvalhalla_go
 // #include <stdio.h>
 // #include <stdlib.h>
 // #include "../bindings/valhalla_go.h"
@@ -14,10 +14,27 @@ type Actor struct {
 	ptr unsafe.Pointer
 }
 
-func NewActor(configPath string) (*Actor, error) {
+func NewActorFromFile(configPath string) (*Actor, error) {
 	var isError uint8 = 0
 	cs := C.CString(configPath)
-	resp := C.actor_init(cs, (*C.char)(unsafe.Pointer(&isError)))
+	resp := C.actor_init_from_file(cs, (*C.char)(unsafe.Pointer(&isError)))
+	C.free(unsafe.Pointer(cs))
+	switch isError {
+	case 0:
+		return &Actor{ptr: unsafe.Pointer(resp)}, nil
+	case 1:
+		err := C.GoString((*C.char)(resp))
+		C.free(unsafe.Pointer(resp))
+		return nil, errors.New(err)
+	default:
+		panic("Invalid error code from valhalla C binding")
+	}
+}
+
+func NewActorFromConfig(config string) (*Actor, error) {
+	var isError uint8 = 0
+	cs := C.CString(config)
+	resp := C.actor_init_from_config(cs, (*C.char)(unsafe.Pointer(&isError)))
 	C.free(unsafe.Pointer(cs))
 	switch isError {
 	case 0:

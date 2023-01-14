@@ -10,12 +10,8 @@
 
 #include "valhalla_go.h"
 
-const boost::property_tree::ptree configure(const std::string& config) {
-  boost::property_tree::ptree pt;
+const boost::property_tree::ptree configure(boost::property_tree::ptree pt, const std::string& config) {
   try {
-    // parse the config and configure logging
-    rapidjson::read_json(config, pt);
-
     boost::optional<boost::property_tree::ptree&> logging_subtree =
         pt.get_child_optional("mjolnir.logging");
     if (logging_subtree) {
@@ -35,9 +31,27 @@ char* copy_str(const char * string) {
   return cstr;
 }
 
-void* actor_init(const char* config, char * is_error) {
+void* actor_init_from_file(const char* config, char * is_error) {
   try {
-    auto actor = new valhalla::tyr::actor_t(configure(config), true);
+    boost::property_tree::ptree pt;
+    // parse the config and configure logging
+    rapidjson::read_json(config, pt);
+    auto actor = new valhalla::tyr::actor_t(configure(pt, config), true);
+    *is_error = 0;
+    return (void*) actor;
+  } catch (std::exception& ex) {
+    *is_error = 1;
+    return (void*) copy_str(ex.what());
+  }
+}
+
+void* actor_init_from_config(const char* config, char * is_error) {
+  try {
+    boost::property_tree::ptree pt;
+    std::istringstream is(config);
+    // parse the config and configure logging
+    rapidjson::read_json(is, pt);
+    auto actor = new valhalla::tyr::actor_t(configure(pt, config), true);
     *is_error = 0;
     return (void*) actor;
   } catch (std::exception& ex) {
