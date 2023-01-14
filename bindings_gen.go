@@ -50,5 +50,5 @@ func main() {
 
 	writeTemplate(&instance, "templates/valhalla_go.templ.cpp", "bindings/valhalla_go.cpp")
 	writeTemplate(&instance, "templates/valhalla_go.templ.h", "bindings/valhalla_go.h")
-	writeTemplate(&instance, "templates/valhalla.templ.go", "valhalla/valhalla.go")
+	writeTemplate(&instance, "templates/valhalla.templ.go", "valhalla.go")
 }

@@ -1,9 +1,9 @@
 package valhalla
 
-// #cgo LDFLAGS: -L../result/lib -lvalhalla_go
+// #cgo LDFLAGS: -L./result/lib -lvalhalla_go
 // #include <stdio.h>
 // #include <stdlib.h>
-// #include "../bindings/valhalla_go.h"
+// #include "./bindings/valhalla_go.h"
 import "C"
 import (
 	"errors"
@@ -47,6 +47,7 @@ func NewActorFromConfig(config *Config) (*Actor, error) {
 		panic("Invalid error code from valhalla C binding")
 	}
 }
+
 
 func (actor *Actor) Centroid(request string) (string, error) {
 	var isError uint8 = 0
@@ -239,3 +240,4 @@ func (actor *Actor) TransitAvailable(request string) (string, error) {
 		panic("Invalid error code from valhalla C binding")
 	}
 }
+

@@ -1,9 +1,9 @@
 package valhalla
 
-// #cgo LDFLAGS: -L../result/lib -lvalhalla_go
+// #cgo LDFLAGS: -L./result/lib -lvalhalla_go
 // #include <stdio.h>
 // #include <stdlib.h>
-// #include "../bindings/valhalla_go.h"
+// #include "./bindings/valhalla_go.h"
 import "C"
 import (
 	"errors"

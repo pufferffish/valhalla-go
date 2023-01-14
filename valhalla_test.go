@@ -8,8 +8,8 @@ import (
 )
 
 const (
-	tilesPath   = "../test/data/utrecht_tiles"
-	extractPath = "../test/data/utrecht_tiles/tiles.tar"
+	tilesPath   = "./test/data/utrecht_tiles"
+	extractPath = "./test/data/utrecht_tiles/tiles.tar"
 )
 
 func testActor(t *testing.T) *Actor {
