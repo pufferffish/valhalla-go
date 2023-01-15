@@ -16,7 +16,6 @@ LD_LIBRARY_PATH=./result/lib go test -v # build and run the test units
 ```
 
 If you do not wish the build the library yourself, you can grab a pre-built binary in the [CI Artifacts](https://github.com/vandreltd/valhalla-go/actions).
-Note that the library depends on `libcurl` so you have to install [curl](https://curl.se/) in your system.
 
 ## License
 
