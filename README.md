@@ -1,5 +1,7 @@
 # Valhalla for Go
 
+[![Test and build bindings](https://github.com/vandreltd/valhalla-go/actions/workflows/build.yml/badge.svg)](https://github.com/vandreltd/valhalla-go/actions/workflows/build.yml)
+
 This spin-off project simply offers Go bindings to the [Valhalla project](https://github.com/valhalla/valhalla).
 
 ## Usage
