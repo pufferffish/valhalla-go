@@ -23,6 +23,7 @@ stdenv.mkDerivation rec {
     "-DENABLE_SERVICES=OFF"
     "-DENABLE_HTTP=OFF"
     "-DENABLE_CCACHE=OFF"
+    "-DENABLE_DATA_TOOLS=OFF"
     "-DCMAKE_BUILD_TYPE=Release"
   ];
 
@@ -30,7 +31,6 @@ stdenv.mkDerivation rec {
     cmake
     zlib
     boost172
-    curl
     protobuf
     sqlite
     libspatialite

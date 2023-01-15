@@ -28,7 +28,6 @@ in stdenv.mkDerivation rec {
     valhallaCustom
     zlib.static
     protobufCustom
-    curl
   ];
 
   buildPhase = ''
@@ -42,7 +41,6 @@ in stdenv.mkDerivation rec {
       -lprotobuf-lite \
       -lz \
       -Wl,-Bdynamic \
-      -lcurl \
       -lpthread
   '';
 
