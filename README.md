@@ -2,7 +2,7 @@
 
 [![Test and build bindings](https://github.com/vandreltd/valhalla-go/actions/workflows/build.yml/badge.svg)](https://github.com/vandreltd/valhalla-go/actions/workflows/build.yml)
 
-This spin-off project simply offers Go bindings to the [Valhalla project](https://github.com/valhalla/valhalla).
+This repo simply offers Go bindings to the [Valhalla project](https://github.com/valhalla/valhalla).
 
 ## Usage
 
@@ -18,6 +18,8 @@ LD_LIBRARY_PATH=./result/lib go test -v # build and run the test units
 ```
 
 If you do not wish the build the library yourself, you can grab a pre-built binary in the [CI Artifacts](https://github.com/vandreltd/valhalla-go/actions).
+
+A preprocessed tiles file of the entire world (2023 Jan) can be found [here](https://archive.org/download/valhalla-planet-221219).
 
 ## License
 
