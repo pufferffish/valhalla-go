@@ -18,7 +18,6 @@ with nixpkgs;
 
 let
   valhallaCustom = (import ./valhalla) { inherit stdenv fetchFromGitHub cmake; };
-  protobufCustom = (import ./protobuf) { inherit lib abseil-cpp stdenv fetchFromGitHub cmake fetchpatch gtest zlib python3; };
 in stdenv.mkDerivation rec {
   name = "valhalla-go";
   src = ./.;
@@ -27,7 +26,7 @@ in stdenv.mkDerivation rec {
     boost179
     valhallaCustom
     zlib.static
-    protobufCustom
+    protobuf
   ];
 
   buildPhase = ''
