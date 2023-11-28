@@ -22,7 +22,7 @@ let
       owner = "protocolbuffers";
       repo = "protobuf";
       rev = "v${version}";
-      sha256 = "sha256-cSN/85rfSyznU4=";
+      sha256 = "honnvgmT1u26vv2AdtLfHou7B640PXaV3s0XXNkd/QE=";
     };
   
     # re-create submodule logic
