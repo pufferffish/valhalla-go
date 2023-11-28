@@ -26,7 +26,7 @@ in stdenv.mkDerivation rec {
     boost179
     valhallaCustom
     zlib.static
-    protobuf
+    protobufc
   ];
 
   buildPhase = ''
