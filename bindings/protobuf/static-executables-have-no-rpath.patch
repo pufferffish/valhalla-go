@@ -1,7 +1,7 @@
-diff --git a/install.cmake.old b/install.cmake
-index 998c2e3..d1fe7a7 100644
---- a/install.cmake.old
-+++ b/install.cmake
+diff --git a/cmake/install.cmake b/cmake/install.cmake
+index 998c2e31a..d1fe7a7ff 100644
+--- a/cmake/install.cmake
++++ b/cmake/install.cmake
 @@ -49,13 +49,6 @@ if (protobuf_BUILD_PROTOC_BINARIES)
    install(TARGETS protoc EXPORT protobuf-targets
      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT protoc
