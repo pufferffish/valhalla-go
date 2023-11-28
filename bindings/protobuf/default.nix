@@ -14,7 +14,7 @@
 }:
 
 let
-  version = "3.21.8";
+  version = "3.25.1";
   self = stdenv.mkDerivation {
     name = "protobuf";
   
@@ -22,7 +22,7 @@ let
       owner = "protocolbuffers";
       repo = "protobuf";
       rev = "v${version}";
-      sha256 = "sha256-cSNHX18CvMmydpYWqfe6WWk9rGxIlFfY/85rfSyznU4=";
+      sha256 = "sha256-cSN/85rfSyznU4=";
     };
   
     # re-create submodule logic

@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "valhalla";
     repo = "valhalla";
-    rev = "3.3.0";
-    sha256 = "honnvgmT1u26vv2AdtLfHou7B640PXaV3s0XXNkd/QE=";
+    rev = "3.4.0";
+    sha256 = "23432";
     fetchSubmodules = true;
   };
 
