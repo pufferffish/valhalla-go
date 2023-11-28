@@ -22,7 +22,7 @@ let
       owner = "protocolbuffers";
       repo = "protobuf";
       rev = "v${version}";
-      sha256 = "honnvgmT1u26vv2AdtLfHou7B640PXaV3s0XXNkd/QE=";
+      sha256 = "honnvgmT1u36vv2AdtLfHou7B640PXaV3s0XXNkd/QE=";
     };
   
     # re-create submodule logic
@@ -46,7 +46,6 @@ let
         url = "https://github.com/protocolbuffers/protobuf/commit/a7324f88e92bc16b57f3683403b6c993bf68070b.patch";
         sha256 = "sha256-SmwaUjOjjZulg/wgNmR/F5b8rhYA2wkKAjHIOxjcQdQ=";
       })
-      ./static-executables-have-no-rpath.patch
     ];
   
     nativeBuildInputs = let
