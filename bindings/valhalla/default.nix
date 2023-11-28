@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     cmake
     zlib
-    boost172
+    boost179
     protobuf
     sqlite
     libspatialite

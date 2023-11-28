@@ -24,7 +24,7 @@ in stdenv.mkDerivation rec {
   src = ./.;
 
   buildInputs = [
-    boost172
+    boost179
     valhallaCustom
     zlib.static
     protobufCustom
